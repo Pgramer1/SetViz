@@ -1,2 +1,3 @@
-# Set_Theory_Visualizer
-A tool to visualize set operations
+# Set_Oprations_Visualizer
+
+A user interactive tool to visualize set operations using python.
