@@ -55,7 +55,7 @@ def plot_sets(sets, operation, result):
         supervenn(sets, set_annotations=set_labels)
         
     else:
-        print("⚠ Visualization not supported for more than 3 sets in Venn diagrams.")
+        print("⚠ Visualization not supported for more sets in Venn diagrams.")
         return
 
     plt.title(f"{operation}: {result}")
@@ -69,40 +69,62 @@ num_sets = int(input("Enter the number of sets (2-3): "))
 sets = [get_set_input(f"Enter elements of set {i+1} (space-separated): ") for i in range(num_sets)]
 
 while True:
-    print("\nSet Operations Menu:")
-    print("1. Union")
-    print("2. Intersection")
-    print("3. Difference of sets")
-    print("4. Symmetric Difference")
-    print("5. Check Subset Relation")
-    print("6. Complement")
-    print("7. Exit")
+    print(f"\n{5*'--'} SET OPERATIONS MENU {5*'--'}\n")
+    print("1. Show all sets")
+    print("2. Union")
+    print("3. Intersection")
+    print("4. Difference of sets")
+    print("5. Symmetric Difference")
+    print("6. Check Subset Relation")
+    print("7. Complement")
+    print("8. Exit")
     
     choice = int(input("Enter your choice: "))
     
     if choice == 1:
+        print("Sets:")
+        for i, s in enumerate(sets, start=1):
+            print(f"Set {i}: {s}")
+        if len(sets) == 2:
+            plt.figure(figsize=(6, 6))
+            venn2(sets, set_labels=["Set 1", "Set 2"])
+            plt.title("All Sets")
+            plt.show()
+        elif len(sets) == 3:
+            plt.figure(figsize=(6, 6))
+            venn3(sets, set_labels=["Set 1", "Set 2", "Set 3"])
+            plt.title("All Sets")
+            plt.show()
+        elif 4 <= len(sets) <= 5:
+            set_labels = [f"Set_{i+1}" for i in range(len(sets))]
+            supervenn(sets, set_annotations=set_labels)
+            plt.title("All Sets")
+            plt.show()
+        else:
+            print("⚠ Visualization not supported for more sets.")
+    elif choice == 2:
         result = union(sets)
         print("Union of all sets:", result)
         plot_sets(sets, "Union", result)
         
-    elif choice == 2:
+    elif choice == 3:
         result = intersection(sets)
         print("Intersection of all sets:", result)
         plot_sets(sets, "Intersection", result)
         
-    elif choice == 3:
+    elif choice == 4:
         a, b = map(int, input("Enter set numbers (1 2 ..) for difference: ").split())
         result = difference(sets[a-1], sets[b-1])
         print(f"Difference (Set {a} - Set {b}):", result)
         plot_sets([sets[a-1], sets[b-1]], "Difference", result)
         
-    elif choice == 4:
+    elif choice == 5:
         a, b = map(int, input("Enter set numbers (1 2 ..) for symmetric difference: ").split())
         result = symmetric_difference(sets[a-1], sets[b-1])
         print(f"Symmetric Difference (Set {a} Δ Set {b}):", result)
         plot_sets([sets[a-1], sets[b-1]], "Symmetric Difference", result)
         
-    elif choice == 5:
+    elif choice == 6:
         a, b = map(int, input("Enter set numbers (1 2 ..) to check subset: ").split())
         result = check_subset(sets[a-1], sets[b-1])
         print(f"Set {a} is a subset of Set {b}: {result}")
@@ -111,7 +133,7 @@ while True:
         if result:
             plot_sets([sets[a-1], sets[b-1]], "Subset Relation", sets[a-1])
 
-    elif choice == 6:
+    elif choice == 7:
         a = int(input("Enter set number for complement: "))
         result = complement(universal_set, sets[a-1])
         print(f"Complement of Set {a} relative to Universal Set:", result)
@@ -129,8 +151,10 @@ while True:
         plt.title(f"Complement of Set {a}")
         plt.show()
         
-    elif choice == 7:
-        print("Exiting...")
+    elif choice == 8:
+        print("\nExiting...")
+        print("Thank you for using the Set Theory Visualizer!")
+        plt.close('all')
         break
     else:
         print("Invalid choice, please try again.")
