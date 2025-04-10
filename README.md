@@ -31,9 +31,6 @@ This interactive script allows users to:
 * **Robust Input:** Handles invalid input gracefully.
 * **Customizable Colors:** Plotting colors defined in easily modifiable palettes within the code.
 
-## Demonstration 🎬
-
-**(Video Placeholder)**
 
 ## Requirements 📋
 
