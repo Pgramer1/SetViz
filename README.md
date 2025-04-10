@@ -93,7 +93,7 @@ This interactive script allows users to:
 
 ---
 
-*This project is a work in progress. Contributions, suggestions, and feedback are welcome! Feel free to open issues or pull requests on GitHub.*
+*This project is in progress. Contributions, suggestions, and feedback are welcome! Feel free to open issues or pull requests on GitHub.*
 
 *License: MIT License*
 
