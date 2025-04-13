@@ -1,4 +1,4 @@
-# Set Theory Visualizer 📊
+# SetViz : A set operation visualizer 📊
 
 A command-line tool written in Python to perform fundamental set theory operations and visualize the relationships between sets using Venn diagrams (`matplotlib-venn`) and Supervenn diagrams (`supervenn`).
 
